@@ -2,12 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: './src/playground.js',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'playground.js',
-        library: 'playground',
-        libraryTarget: 'umd'
+        filename: 'index.js'
     },
      resolve: {
         extensions: ['.js'],
