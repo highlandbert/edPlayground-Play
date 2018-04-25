@@ -22,7 +22,6 @@ export default class AuthService {
   }
 
 	static doLogin() {
-		this.deleteCredentials();
 		window.location.href = "/auth";
 	}
 }
