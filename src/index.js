@@ -18,8 +18,11 @@ const addScript = (id) => {
   document.body.appendChild(script);
 };
 
+let hasScores = false;
+
 ApiService.get(`levels/${levelId}`).then(level => {
   console.log(level);
+  hasScores = level.hasScores;
   document.getElementById('name').innerText = level.name;
   addScript(levelId);
 })
@@ -27,5 +30,21 @@ ApiService.get(`levels/${levelId}`).then(level => {
   console.log('Not Found');
   document.getElementById('e404').className = 'show';
 });
+
+playground.events.onLevelFinished = () => {
+  console.log('Finished');
+  const auth = AuthService.getCredentials();
+  const userId = auth._id;
+
+  var params = new URLSearchParams();
+  params.set('levelId', levelId);
+  params.set('userId', userId);
+  params.set('seconds', 0);
+
+  console.log(userId);
+  document.getElementById('finished').className = 'show';
+  document.getElementById('time').innerText = hasScores ? '00:00:00' : '';
+  return ApiService.post(`levelsResults`, params);
+};
 
 
