@@ -1,6 +1,6 @@
 const Config = {
   api: 'http://localhost:8080/api',
-  scripts: 'http://localhost:8080/scripts'
+  cdn: 'http://localhost:8080/cdn'
 };
 
 export default Config

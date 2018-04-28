@@ -14,7 +14,7 @@ const levelId = location.search.replace('?level=', ''); // '5aa27062a8669d1a785f
 
 const addScript = (id) => {
   const script = document.createElement('script');
-  script.src = `${Config.scripts}/level_${id}`;
+  script.src = `${Config.cdn}/levels/${id}`;
   document.body.appendChild(script);
 };
 
