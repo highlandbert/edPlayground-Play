@@ -10,7 +10,30 @@ console.log(AuthService.getUsername());
 
 document.getElementById('user').innerText = AuthService.getUsername();
 
-const levelId = location.search.replace('?level=', ''); // '5aa27062a8669d1a785f511b';
+const params = location.search.replace('?', '').split('&');
+
+let levelId = 0; // '5aa27062a8669d1a785f511b';
+let redirect = '';
+
+for (const param of params) {
+  if (param.includes('level=')) {
+    levelId = param.replace('level=', '');
+  }
+  if (param.includes('redirect=')) {
+    redirect = param.replace('redirect=', '');
+  }
+}
+
+console.log(levelId);
+console.log(redirect);
+
+if (redirect !== '') {
+  const links = document.getElementsByClassName('back');
+  for (const link of links) {
+    link.innerText = 'Return';
+    link.href = redirect;
+  };
+}
 
 const addScript = (id) => {
   const script = document.createElement('script');

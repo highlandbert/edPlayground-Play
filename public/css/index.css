@@ -91,6 +91,15 @@ body {
     display: flex;
 }
 
+a {
+    font-size: 2rem;
+}
+
+a:hover {
+    color: #3273dc;
+    text-decoration: underline;
+}
+
 @media (min-width: 1280px) {
     #level {
         width: 1280px;
