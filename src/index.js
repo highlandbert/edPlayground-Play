@@ -7,6 +7,7 @@ if (!AuthService.hasCredentials()) {
 }
 
 let levelId = 0; // 5ae83a4eaef23b03bc566220;
+let lessonId = 0;
 let redirect = '';
 let hasScores = false;
 let startDate = undefined;
@@ -21,6 +22,9 @@ for (const param of params) {
   if (param.includes('redirect=')) {
     redirect = param.replace('redirect=', '');
   }
+  if (param.includes('lesson=')) {
+    lessonId = param.replace('lesson=', '');
+  }
 }
 
 if (redirect !== '') {
@@ -31,12 +35,19 @@ if (redirect !== '') {
   };
 }
 
+const addAssetsScript = (id) => {
+  const script = document.createElement('script');
+  script.src = `${Config.cdn}/assets/${id}`;
+  document.body.appendChild(script);
+};
+
 const addScript = (id) => {
   const script = document.createElement('script');
   script.src = `${Config.cdn}/levels/${id}`;
   document.body.appendChild(script);
 };
 
+addAssetsScript(lessonId);
 
 ApiService.get(`levels/${levelId}`).then(level => {
   console.log(level);
